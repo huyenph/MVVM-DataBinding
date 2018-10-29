@@ -1,3 +1,2 @@
 # Base MVVM
-MVVM + data binding
-Retrofit + RxJava
+MVVM + data binding, Retrofit + RxJava
