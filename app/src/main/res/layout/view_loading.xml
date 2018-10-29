@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="mainViewModel"
-            type="com.utildev.arch.basemvvm.viewmodel.activity.MainViewModel" />
+            name="viewModel"
+            type="com.utildev.arch.basemvvm.common.base.BaseViewModel" />
     </data>
 
     <ProgressBar
@@ -13,6 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="@{mainViewModel.getLoadingView, default=gone}" />
+        android:visibility="@{viewModel.getLoadingView, default=gone}" />
 
 </layout>

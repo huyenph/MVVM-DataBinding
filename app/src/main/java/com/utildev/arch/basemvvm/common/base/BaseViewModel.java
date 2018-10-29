@@ -1,11 +1,10 @@
 package com.utildev.arch.basemvvm.common.base;
 
+import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableInt;
 import android.view.View;
 
-import java.util.Observable;
-
-public class BaseViewModel extends Observable {
+public class BaseViewModel extends ViewModel {
     private ObservableInt loadingView = new ObservableInt(View.GONE);
 
     public ObservableInt getLoadingView() {
@@ -13,10 +12,14 @@ public class BaseViewModel extends Observable {
     }
 
     public void showLoading(View view) {
-        loadingView.set(View.VISIBLE);
+        if (loadingView.get() != View.VISIBLE) {
+            loadingView.set(View.VISIBLE);
+        }
     }
 
     public void dismissLoading(View view) {
-        loadingView.set(View.GONE);
+        if (loadingView.get() != View.GONE) {
+            loadingView.set(View.GONE);
+        }
     }
 }

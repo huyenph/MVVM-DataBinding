@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="mainViewModel"
-            type="com.utildev.arch.basemvvm.viewmodel.activity.MainViewModel" />
+            name="viewModel"
+            type="com.utildev.arch.basemvvm.viewmodel.activity.MainActivityVM" />
     </data>
 
     <FrameLayout
@@ -22,7 +22,28 @@
 
         <include
             layout="@layout/view_loading"
-            bind:mainViewModel="@{mainViewModel}" />
+            bind:viewModel="@{viewModel}" />
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="show"-->
+            <!--android:padding="20dp"-->
+            <!--android:visibility="gone"-->
+            <!--android:onClick="@{viewModel::showLoading}"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:layout_gravity="bottom|center"-->
+            <!--android:layout_marginBottom="50dp"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="dismiss"-->
+            <!--android:padding="20dp"-->
+            <!--android:visibility="gone"-->
+            <!--android:onClick="@{viewModel::dismissLoading}"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:layout_gravity="bottom|center" />-->
 
     </FrameLayout>
 
