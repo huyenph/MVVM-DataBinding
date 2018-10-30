@@ -15,16 +15,16 @@ import com.utildev.arch.basemvvm.databinding.FragmentMainBinding;
 import com.utildev.arch.basemvvm.viewmodel.fragment.MainFragmentVM;
 
 public class MainFragment extends BaseFragment {
-    private FragmentMainBinding fragmentMainBinding;
-    private MainFragmentVM mainFragmentViewModel;
+    private FragmentMainBinding fmMainBinding;
+    private MainFragmentVM viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        fragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
-        View view = fragmentMainBinding.getRoot();
-        mainFragmentViewModel = ViewModelProviders.of(this).get(MainFragmentVM.class);
-        fragmentMainBinding.setViewModel(mainFragmentViewModel);
+        fmMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+        View view = fmMainBinding.getRoot();
+        viewModel = ViewModelProviders.of(this).get(MainFragmentVM.class);
+        fmMainBinding.setViewModel(viewModel);
         return view;
     }
 }

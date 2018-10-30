@@ -13,12 +13,12 @@ public class BaseViewModel extends ViewModel implements ApiResponseListener {
     private ApiClient apiClient;
     private ObservableInt loadingView = new ObservableInt(View.GONE);
 
-    protected BaseViewModel() {
-        ApiResponseHandler responseHandler = new ApiResponseHandler(null, this);
+    public BaseViewModel() {
+        ApiResponseHandler responseHandler = new ApiResponseHandler(this);
         apiClient = new ApiClient(responseHandler.requestListener);
     }
 
-    public ApiClient getApiClient() {
+    protected ApiClient getApiClient() {
         return apiClient;
     }
 
@@ -26,6 +26,7 @@ public class BaseViewModel extends ViewModel implements ApiResponseListener {
         return loadingView;
     }
 
+    //region TODO: Control loading view
     public void showLoading(View view) {
         if (loadingView.get() != View.VISIBLE) {
             loadingView.set(View.VISIBLE);
@@ -37,14 +38,13 @@ public class BaseViewModel extends ViewModel implements ApiResponseListener {
             loadingView.set(View.GONE);
         }
     }
+    //endregion
 
     @Override
     public void onDataResponse(int code, BaseModel model) {
-
     }
 
     @Override
     public void onDataError(int code, RestError error) {
-
     }
 }

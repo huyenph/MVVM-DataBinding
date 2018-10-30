@@ -18,10 +18,11 @@ public class ApiClient extends ApiClientBuilder {
         super(requestListener);
     }
 
-    public void exampleNormal(String v1, String v2) {
+    public void exampleNormal(String v1, String v2, String v3) {
         ApiParams params = new ApiParams();
         params.add("key1", v1);
         params.add("key2", v2);
+        params.add("key3", v3);
         ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
         requestApi(new TypeToken<BaseModel>() {
         }.getType(), apiService.callNormal(params.getParams()));

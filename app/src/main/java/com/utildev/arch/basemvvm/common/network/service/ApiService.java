@@ -10,13 +10,16 @@ import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
     //retrofit
-    @POST("post text")
-    Call<JsonObject> callNormal(@Body Map<String, Object> body);
+    @FormUrlEncoded
+    @POST("upload key, object")
+    Call<JsonObject> callNormal(@FieldMap Map<String, Object> body);
 
     @POST("upload file")
     Call<JsonObject> callFiles(@Body RequestBody file);
