@@ -28,4 +28,9 @@ public class MainActivity extends BaseActivity {
         activityMainBinding.setViewModel(mainViewModel);
         Log.d("aaa", "onCreate: " + NetworkConfig.createConnectionDetail(AppConfig.configType));
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

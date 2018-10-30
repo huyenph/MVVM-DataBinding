@@ -1,4 +1,4 @@
-package com.utildev.arch.basemvvm.common.network;
+package com.utildev.arch.basemvvm.common.network.service;
 
 import com.google.gson.JsonObject;
 import com.utildev.arch.basemvvm.common.base.BaseModel;
