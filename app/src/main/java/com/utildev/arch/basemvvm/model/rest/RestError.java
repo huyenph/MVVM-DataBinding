@@ -17,7 +17,7 @@ public class RestError extends BaseModel {
 
     public String getMessage() {
         if (TextUtils.isEmpty(message)) {
-            return "Some things wrong.";
+            return "fail";
         }
         return message;
     }

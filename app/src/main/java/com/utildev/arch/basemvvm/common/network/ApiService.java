@@ -16,18 +16,18 @@ import retrofit2.http.POST;
 public interface ApiService {
     //retrofit
     @POST("post text")
-    Call<JsonObject> callExampleNormal(@Body Map<String, Object> body);
+    Call<JsonObject> callNormal(@Body Map<String, Object> body);
 
     @POST("upload file")
-    Call<JsonObject> callExampleFiles(@Body RequestBody file);
+    Call<JsonObject> callFiles(@Body RequestBody file);
 
     @POST("upload list")
-    Call<JsonObject> callExampleList(@Body List<BaseModel> body);
+    Call<JsonObject> callList(@Body List<BaseModel> body);
 
     @GET("not param")
-    Call<JsonObject> callExampleNotParams();
+    Call<JsonObject> callNotParams();
 
     //rxjava + retrofit
     @GET("not param")
-    Observable<BaseModel> callExampleRxJava(@Body Map<String, Object> body);
+    Observable<BaseModel> callRxJava(@Body Map<String, Object> body);
 }

@@ -34,7 +34,8 @@ public class ApiGenerator {
         httpClient.connectTimeout(5, TimeUnit.MINUTES)
                 .readTimeout(5, TimeUnit.MINUTES)
                 .writeTimeout(5, TimeUnit.MINUTES)
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpInterceptor());
 
         Gson gson = new GsonBuilder().setLenient().create();
         return new Retrofit.Builder()
