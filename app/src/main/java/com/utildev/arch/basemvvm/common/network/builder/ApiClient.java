@@ -9,6 +9,8 @@ import com.utildev.arch.basemvvm.common.network.service.ApiService;
 import java.io.File;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -58,5 +60,18 @@ public class ApiClient extends ApiClientBuilder {
         ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
         requestApi(new TypeToken<BaseModel>() {
         }.getType(), apiService.callFiles(requestBody));
+    }
+
+    public void requestRx(String v1, String v2, String v3) {
+        ApiParams params = new ApiParams();
+        params.add("key1", v1);
+        params.add("key2", v2);
+        params.add("key3", v3);
+        ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
+        requestApiRx(new TypeToken<BaseModel>() {
+                }.getType(),
+                apiService.callRxJava(params.getParams())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread()));
     }
 }
