@@ -31,6 +31,7 @@ public interface ApiService {
     Call<JsonObject> callNotParams();
 
     //rxjava + retrofit
-    @GET("not param")
-    Observable<BaseModel> callRxJava(@Body Map<String, Object> body);
+    @FormUrlEncoded
+    @POST("mobile/login")
+    Observable<JsonObject> callRxJava(@FieldMap Map<String, Object> body);
 }
