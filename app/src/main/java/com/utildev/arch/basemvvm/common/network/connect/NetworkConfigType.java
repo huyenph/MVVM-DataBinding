@@ -2,7 +2,7 @@ package com.utildev.arch.basemvvm.common.network.connect;
 
 public enum NetworkConfigType {
     DEV("dev"),
-    STAGING("staging"),
+    TEST("test"),
     PRODUCTION("production");
 
     private String type;

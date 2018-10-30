@@ -2,6 +2,7 @@ package com.utildev.arch.basemvvm.common.network.builder;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.utildev.arch.basemvvm.common.base.BaseApplication;
 import com.utildev.arch.basemvvm.common.network.connect.NetworkConfig;
 import com.utildev.arch.basemvvm.common.network.connect.NetworkConfigType;
 
@@ -22,6 +23,10 @@ public class ApiGenerator {
             apiGenerator = new ApiGenerator();
         }
         return apiGenerator;
+    }
+
+    private ApiGenerator() {
+        retrofit = createRetrofit(BaseApplication.networkConfigType);
     }
 
     private Retrofit createRetrofit(NetworkConfigType type) {

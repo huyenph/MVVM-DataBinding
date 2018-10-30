@@ -8,8 +8,8 @@ public class NetworkConfig {
         switch (type) {
             case DEV:
                 return "http://dev";
-            case STAGING:
-                return "http://staging";
+            case TEST:
+                return "http://test";
             case PRODUCTION:
                 return "http://production";
             default:
