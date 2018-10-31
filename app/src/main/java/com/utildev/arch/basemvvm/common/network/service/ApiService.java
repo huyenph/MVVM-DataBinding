@@ -33,5 +33,5 @@ public interface ApiService {
     //rxjava + retrofit
     @FormUrlEncoded
     @POST("mobile/login")
-    Observable<JsonObject> callRxJava(@FieldMap Map<String, Object> body);
+    Observable<JsonObject> callRx(@FieldMap Map<String, Object> body);
 }

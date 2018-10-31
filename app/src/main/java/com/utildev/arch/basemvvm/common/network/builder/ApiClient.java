@@ -70,7 +70,7 @@ public class ApiClient extends ApiClientBuilder {
         ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
         requestApiRx(new TypeToken<BaseModel>() {
                 }.getType(),
-                apiService.callRxJava(params.getParams())
+                apiService.callRx(params.getParams())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread()));
     }

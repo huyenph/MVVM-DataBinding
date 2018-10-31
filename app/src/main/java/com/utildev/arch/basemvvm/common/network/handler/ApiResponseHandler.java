@@ -21,11 +21,14 @@ import retrofit2.Response;
 
 public class ApiResponseHandler {
     private ApiResponseListener responseListener;
+    private CompositeDisposable compositeDisposable;
+
     private Type rxType;
     private int rxCode;
 
     public ApiResponseHandler(ApiResponseListener responseListener) {
         this.responseListener = responseListener;
+        compositeDisposable = new CompositeDisposable();
     }
 
     public ApiRequestListener requestListener = new ApiRequestListener() {
@@ -66,10 +69,10 @@ public class ApiResponseHandler {
         public void onRequestApiRx(int code, Type type, Observable<JsonObject> observable) {
             rxType = type;
             rxCode = code;
-            CompositeDisposable compositeDisposable = new CompositeDisposable();
             Disposable disposable = observable
                     .subscribe(ApiResponseHandler.this::handleResponse, ApiResponseHandler.this::handleError);
             compositeDisposable.add(disposable);
+
         }
     };
 
@@ -87,6 +90,13 @@ public class ApiResponseHandler {
     private void handleError(Throwable t) {
         if (responseListener != null) {
             responseListener.onDataError(rxCode, RestError.parseData(t.getMessage()));
+        }
+    }
+
+    public void unSubscribeObservable() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable = null;
         }
     }
 }

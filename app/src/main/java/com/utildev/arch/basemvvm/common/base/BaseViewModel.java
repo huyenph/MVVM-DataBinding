@@ -10,11 +10,13 @@ import com.utildev.arch.basemvvm.common.network.handler.ApiResponseHandler;
 import com.utildev.arch.basemvvm.model.rest.RestError;
 
 public class BaseViewModel extends ViewModel implements ApiResponseListener {
+    private ApiResponseHandler responseHandler;
     private ApiClient apiClient;
-    private ObservableInt loadingView = new ObservableInt(View.GONE);
+    private ObservableInt loadingView;
 
     public BaseViewModel() {
-        ApiResponseHandler responseHandler = new ApiResponseHandler(this);
+        loadingView = new ObservableInt(View.GONE);
+        responseHandler = new ApiResponseHandler(this);
         apiClient = new ApiClient(responseHandler.requestListener);
     }
 
@@ -39,6 +41,10 @@ public class BaseViewModel extends ViewModel implements ApiResponseListener {
         }
     }
     //endregion
+
+    public void resetSubscribeObservable() {
+        responseHandler.unSubscribeObservable();
+    }
 
     @Override
     public void onDataResponse(int code, BaseModel model) {
