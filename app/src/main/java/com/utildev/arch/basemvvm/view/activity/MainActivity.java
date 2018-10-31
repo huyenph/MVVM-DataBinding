@@ -21,4 +21,10 @@ public class MainActivity extends BaseActivity {
         actMainBinding.setViewModel(viewModel);
         viewModel.getAllUser();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        viewModel.resetSubscribeObservable();
+    }
 }
