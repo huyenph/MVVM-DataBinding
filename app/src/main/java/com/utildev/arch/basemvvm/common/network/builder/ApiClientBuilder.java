@@ -12,11 +12,11 @@ import retrofit2.Call;
 public class ApiClientBuilder {
     private ApiRequestListener requestListener;
 
-    ApiClientBuilder(ApiRequestListener requestListener) {
+    public ApiClientBuilder(ApiRequestListener requestListener) {
         this.requestListener = requestListener;
     }
 
-    void requestApi(Type type, Call<JsonObject> call) {
+    protected void requestApi(Type type, Call<JsonObject> call) {
         if (requestListener != null) {
             requestListener.onRequestApi(ApiKeyParams.CODE_DEFAULT, type, call);
         }
@@ -28,13 +28,13 @@ public class ApiClientBuilder {
         }
     }
 
-    void requestApiRx(Type type, Observable<JsonObject> observable) {
+    protected void requestApiRx(Type type, Observable<JsonObject> observable) {
         if (requestListener != null) {
             requestListener.onRequestApiRx(ApiKeyParams.CODE_DEFAULT_RX, type, observable);
         }
     }
 
-    void requestApiRx(int code, Type type, Observable<JsonObject> observable) {
+    public void requestApiRx(int code, Type type, Observable<JsonObject> observable) {
         if (requestListener != null) {
             requestListener.onRequestApiRx(code, type, observable);
         }

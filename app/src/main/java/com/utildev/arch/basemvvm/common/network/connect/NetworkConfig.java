@@ -7,7 +7,7 @@ public class NetworkConfig {
         }
         switch (type) {
             case DEV:
-                return "http://dev";
+                return "https://api.stackexchange.com/2.2/";
             case TEST:
                 return "http://test";
             case PRODUCTION:

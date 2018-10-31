@@ -19,5 +19,6 @@ public class MainActivity extends BaseActivity {
         actMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
         actMainBinding.setViewModel(viewModel);
+        viewModel.getAllUser();
     }
 }

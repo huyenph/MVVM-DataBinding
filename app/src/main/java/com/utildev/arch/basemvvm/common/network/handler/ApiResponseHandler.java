@@ -72,7 +72,6 @@ public class ApiResponseHandler {
             Disposable disposable = observable
                     .subscribe(ApiResponseHandler.this::handleResponse, ApiResponseHandler.this::handleError);
             compositeDisposable.add(disposable);
-
         }
     };
 

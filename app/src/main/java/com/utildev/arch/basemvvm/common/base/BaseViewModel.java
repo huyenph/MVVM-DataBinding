@@ -5,7 +5,7 @@ import android.databinding.ObservableInt;
 import android.view.View;
 
 import com.utildev.arch.basemvvm.common.network.ApiResponseListener;
-import com.utildev.arch.basemvvm.common.network.builder.ApiClient;
+import com.utildev.arch.basemvvm.common.network.client.ApiClient;
 import com.utildev.arch.basemvvm.common.network.handler.ApiResponseHandler;
 import com.utildev.arch.basemvvm.model.rest.RestError;
 
@@ -18,6 +18,10 @@ public class BaseViewModel extends ViewModel implements ApiResponseListener {
         loadingView = new ObservableInt(View.GONE);
         responseHandler = new ApiResponseHandler(this);
         apiClient = new ApiClient(responseHandler.requestListener);
+    }
+
+    public ApiResponseHandler getResponseHandler() {
+        return responseHandler;
     }
 
     protected ApiClient getApiClient() {

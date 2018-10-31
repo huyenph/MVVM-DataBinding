@@ -1,9 +1,11 @@
-package com.utildev.arch.basemvvm.common.network.builder;
+package com.utildev.arch.basemvvm.common.network.client;
 
 import com.google.gson.reflect.TypeToken;
 import com.utildev.arch.basemvvm.common.base.BaseModel;
 import com.utildev.arch.basemvvm.common.network.ApiParams;
 import com.utildev.arch.basemvvm.common.network.ApiRequestListener;
+import com.utildev.arch.basemvvm.common.network.builder.ApiClientBuilder;
+import com.utildev.arch.basemvvm.common.network.builder.ApiGenerator;
 import com.utildev.arch.basemvvm.common.network.service.ApiService;
 
 import java.io.File;

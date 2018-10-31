@@ -1,4 +1,4 @@
-package com.utildev.arch.basemvvm.common.network.builder;
+package com.utildev.arch.basemvvm.common.network.handler;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;

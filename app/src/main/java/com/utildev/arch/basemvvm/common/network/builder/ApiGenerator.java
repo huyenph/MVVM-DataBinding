@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.utildev.arch.basemvvm.common.base.BaseApplication;
 import com.utildev.arch.basemvvm.common.network.connect.NetworkConfig;
 import com.utildev.arch.basemvvm.common.network.connect.NetworkConfigType;
+import com.utildev.arch.basemvvm.common.network.handler.HttpInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +19,7 @@ public class ApiGenerator {
     private static ApiGenerator apiGenerator = new ApiGenerator();
     private Retrofit retrofit;
 
-    static synchronized ApiGenerator getApiGenerator() {
+    public static synchronized ApiGenerator getApiGenerator() {
         if (apiGenerator == null) {
             apiGenerator = new ApiGenerator();
         }
