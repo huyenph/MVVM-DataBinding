@@ -9,7 +9,7 @@ import com.utildev.arch.basemvvm.common.network.client.ApiClient;
 import com.utildev.arch.basemvvm.common.network.handler.ApiResponseHandler;
 import com.utildev.arch.basemvvm.model.rest.RestError;
 
-public class BaseViewModel extends ViewModel implements ApiResponseListener {
+public abstract class BaseViewModel extends ViewModel implements ApiResponseListener {
     private ApiResponseHandler responseHandler;
     private ApiClient apiClient;
     private ObservableInt loadingView;

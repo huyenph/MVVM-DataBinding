@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.utildev.arch.basemvvm.R;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     private void transactionFragment(BaseFragment fragment, boolean replace, boolean addToBackStack, boolean animation) {
         FragmentManager fm = getSupportFragmentManager();
         if (fm != null && fragment != null) {
