@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SingleTypeAdapter<T> extends BaseAdapter<T> {
-    protected int layoutRes;
+    private int layoutRes;
 
     private int getLayoutRes() {
         return layoutRes;

@@ -1,7 +1,6 @@
 package com.utildev.arch.basemvvm.viewmodel.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
@@ -9,7 +8,7 @@ import com.utildev.arch.basemvvm.common.base.BaseModel;
 import com.utildev.arch.basemvvm.common.base.BaseViewModel;
 import com.utildev.arch.basemvvm.common.network.client.StackExchangeClient;
 import com.utildev.arch.basemvvm.model.rest.RestError;
-import com.utildev.arch.basemvvm.view.activity.RecyclerViewActivity;
+import com.utildev.arch.basemvvm.view.activity.ListActivity;
 
 public class MainActivityVM extends BaseViewModel {
     private Activity activity;
@@ -26,7 +25,7 @@ public class MainActivityVM extends BaseViewModel {
     }
 
     public void onClickRecyclerView(View view) {
-        activity.startActivity(new Intent(activity, RecyclerViewActivity.class));
+        activity.startActivity(new Intent(activity, ListActivity.class));
     }
 
     @Override
