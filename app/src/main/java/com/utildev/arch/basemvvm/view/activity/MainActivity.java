@@ -17,9 +17,10 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
+//        viewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
+        viewModel = new MainActivityVM(this);
         actMainBinding.setViewModel(viewModel);
-        viewModel.getAllUser();
+//        viewModel.getAllUser();
     }
 
     @Override
