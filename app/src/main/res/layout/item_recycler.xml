@@ -23,6 +23,7 @@
         android:layout_marginEnd="@dimen/_5dp"
         android:layout_marginBottom="@dimen/_10dp"
         android:background="#fff"
+        android:onLongClick="@{()->listener.onItemLongClick(viewModel)}"
         app:cardCornerRadius="@dimen/_5dp">
 
         <LinearLayout

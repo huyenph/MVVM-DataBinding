@@ -25,7 +25,7 @@ public class ListActivity extends AppCompatActivity implements BaseAdapter.Adapt
             contacts.add(new Contact("app " + i, "Android",
                     "0123456789", "app" + i + "@gmail.com", "Development"));
         }
-        SingleTypeAdapter<Contact> adapter = new SingleTypeAdapter<>(this, R.layout.item_recycler_1);
+        SingleTypeAdapter<Contact> adapter = new SingleTypeAdapter<>(this, R.layout.item_recycler);
         adapter.addAll(contacts);
         adapter.setAdapterListener(this);
         binding.setLayoutManager(new LinearLayoutManager(this));
