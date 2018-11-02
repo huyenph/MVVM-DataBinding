@@ -10,7 +10,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:background="@color/colorPrimary"
+        android:visibility="@{visibility}">
 
     </View>
 </layout>

@@ -15,7 +15,7 @@ public class SingleTypeAdapter<T> extends BaseAdapter<T> {
         return layoutRes;
     }
 
-    protected SingleTypeAdapter(Context context, int layoutRes) {
+    public SingleTypeAdapter(Context context, int layoutRes) {
         super(context);
         this.layoutRes = layoutRes;
         itemList = new ArrayList<>();

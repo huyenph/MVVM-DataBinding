@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BaseMVVM</string>
+    <string name="text_name">Name</string>
+    <string name="text_company">Company Name</string>
+    <string name="text_mobile">Mobile</string>
+    <string name="text_email">Email</string>
+    <string name="text_group_name">Group Name</string>
 </resources>

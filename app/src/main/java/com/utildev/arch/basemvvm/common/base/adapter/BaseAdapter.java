@@ -13,6 +13,7 @@ import java.util.List;
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
     final LayoutInflater layoutInflater;
     List<T> itemList;
+    private AdapterListener adapterListener;
 
     BaseAdapter(Context context) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -22,6 +23,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Object item = itemList.get(position);
         holder.getBinding().setVariable(BR.viewModel, item);
+        holder.getBinding().setVariable(BR.listener, getAdapterListener());
         holder.getBinding().executePendingBindings();
     }
 
@@ -51,5 +53,17 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
         T getBinding() {
             return binding;
         }
+    }
+
+    public interface AdapterListener {
+        void onItemClick(String value);
+    }
+
+    public void setAdapterListener(AdapterListener adapterListener) {
+        this.adapterListener = adapterListener;
+    }
+
+    public AdapterListener getAdapterListener() {
+        return adapterListener;
     }
 }
