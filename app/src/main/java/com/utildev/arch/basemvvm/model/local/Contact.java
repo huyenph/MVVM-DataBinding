@@ -3,14 +3,15 @@ package com.utildev.arch.basemvvm.model.local;
 import com.utildev.arch.basemvvm.common.base.BaseModel;
 
 public class Contact extends BaseModel {
-    private String name, company, mobile, email, groupName;
+    private String name, company, mobile, email, groupName, url;
 
-    public Contact(String name, String company, String mobile, String email, String groupName) {
+    public Contact(String name, String company, String mobile, String email, String groupName, String url) {
         this.name = name;
         this.company = company;
         this.mobile = mobile;
         this.email = email;
         this.groupName = groupName;
+        this.url = url;
     }
 
     public String getName() {
@@ -31,5 +32,9 @@ public class Contact extends BaseModel {
 
     public String getGroupName() {
         return groupName != null ? groupName : "";
+    }
+
+    public String getUrl() {
+        return url != null ? url : "";
     }
 }

@@ -23,7 +23,8 @@ public class ListActivity extends AppCompatActivity implements BaseAdapter.Adapt
         ObservableList<Contact> contacts = new ObservableArrayList<>();
         for (int i = 0; i < 50; i++) {
             contacts.add(new Contact("app " + i, "Android",
-                    "0123456789", "app" + i + "@gmail.com", "Development"));
+                    "0123456789", "app" + i + "@gmail.com", "Development",
+                    "http://android.caotic.it/files/2013/07/Android-logo_0.jpg"));
         }
         SingleTypeAdapter<Contact> adapter = new SingleTypeAdapter<>(this, R.layout.item_recycler);
         adapter.addAll(contacts);
