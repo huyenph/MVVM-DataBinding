@@ -25,7 +25,7 @@ public class ListActivity extends AppCompatActivity implements BaseAdapter.Adapt
             contacts.add(new Contact("app " + i, "Android",
                     "0123456789", "app" + i + "@gmail.com", "Development"));
         }
-        SingleTypeAdapter<Contact> adapter = new SingleTypeAdapter<>(this, R.layout.item_recycler);
+        SingleTypeAdapter<Contact> adapter = new SingleTypeAdapter<>(this, R.layout.item_recycler_1);
         adapter.addAll(contacts);
         adapter.setAdapterListener(this);
         binding.setLayoutManager(new LinearLayoutManager(this));
@@ -35,5 +35,15 @@ public class ListActivity extends AppCompatActivity implements BaseAdapter.Adapt
     @Override
     public void onItemClick(String value) {
         Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onItemLongClick(Object object) {
+        if (object instanceof Contact) {
+            Contact contact = (Contact) object;
+            Toast.makeText(this, contact.getName() + "\n" + contact.getCompany() + "\n" + contact.getEmail() + "\n"
+                    + contact.getMobile() + "\n" + contact.getGroupName(), Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
 }

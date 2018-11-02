@@ -57,6 +57,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
     public interface AdapterListener {
         void onItemClick(String value);
+
+        boolean onItemLongClick(Object object);
     }
 
     public void setAdapterListener(AdapterListener adapterListener) {
