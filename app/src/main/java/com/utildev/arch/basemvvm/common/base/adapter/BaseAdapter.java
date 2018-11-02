@@ -37,20 +37,20 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
         notifyItemRemoved(position);
     }
 
-    public void clearItemList() {
+    public void clearList() {
         itemList.clear();
         notifyDataSetChanged();
     }
 
-    class ViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
-        final T binding;
+    class ViewHolder<t extends ViewDataBinding> extends RecyclerView.ViewHolder {
+        final t binding;
 
-        ViewHolder(T binding) {
+        ViewHolder(t binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        T getBinding() {
+        t getBinding() {
             return binding;
         }
     }
@@ -63,7 +63,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
         this.adapterListener = adapterListener;
     }
 
-    public AdapterListener getAdapterListener() {
+    private AdapterListener getAdapterListener() {
         return adapterListener;
     }
 }

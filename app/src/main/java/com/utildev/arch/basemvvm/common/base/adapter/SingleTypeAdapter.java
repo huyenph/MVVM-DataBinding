@@ -28,11 +28,6 @@ public class SingleTypeAdapter<T> extends BaseAdapter<T> {
         return new ViewHolder(DataBindingUtil.inflate(layoutInflater, getLayoutRes(), viewGroup, false));
     }
 
-    @Override
-    public int getItemCount() {
-        return itemList != null ? itemList.size() : 0;
-    }
-
     public void add(T viewModel) {
         itemList.add(viewModel);
         notifyDataSetChanged();
