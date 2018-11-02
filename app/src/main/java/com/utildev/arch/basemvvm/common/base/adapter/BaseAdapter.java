@@ -11,7 +11,7 @@ import com.utildev.arch.basemvvm.BR;
 import java.util.List;
 
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
-    protected final LayoutInflater layoutInflater;
+    final LayoutInflater layoutInflater;
     List<T> itemList;
 
     BaseAdapter(Context context) {
@@ -41,14 +41,14 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
     }
 
     class ViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
-        protected final T binding;
+        final T binding;
 
-        public ViewHolder(T binding) {
+        ViewHolder(T binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public T getBinding() {
+        T getBinding() {
             return binding;
         }
     }
