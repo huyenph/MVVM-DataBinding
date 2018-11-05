@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SingleTypeAdapter<T> extends BaseAdapter<T> {
+public class RVBindingAdapter<T> extends BaseAdapter<T> {
     private int layoutRes;
 
-    private int getLayoutRes() {
-        return layoutRes;
-    }
-
-    public SingleTypeAdapter(Context context, int layoutRes) {
+    public RVBindingAdapter(Context context, int layoutRes) {
         super(context);
         this.layoutRes = layoutRes;
         itemList = new ArrayList<>();
+    }
+
+    private int getLayoutRes() {
+        return layoutRes;
     }
 
     @SuppressWarnings("unchecked")

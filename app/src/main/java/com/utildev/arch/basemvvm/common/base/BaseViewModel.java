@@ -1,5 +1,6 @@
 package com.utildev.arch.basemvvm.common.base;
 
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableInt;
 import android.view.View;
@@ -20,7 +21,7 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
         apiClient = new ApiClient(responseHandler.requestListener);
     }
 
-    public ApiResponseHandler getResponseHandler() {
+    protected ApiResponseHandler getResponseHandler() {
         return responseHandler;
     }
 

@@ -1,23 +1,25 @@
 package com.utildev.arch.basemvvm.viewmodel.activity;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.arch.lifecycle.MutableLiveData;
 import android.view.View;
 
 import com.utildev.arch.basemvvm.common.base.BaseModel;
 import com.utildev.arch.basemvvm.common.base.BaseViewModel;
 import com.utildev.arch.basemvvm.common.network.client.StackExchangeClient;
 import com.utildev.arch.basemvvm.model.rest.RestError;
-import com.utildev.arch.basemvvm.view.activity.ListActivity;
 
 public class MainActivityVM extends BaseViewModel {
-    private Activity activity;
+    private MutableLiveData<Integer> requestIntent;
     private StackExchangeClient stackExchangeClient;
 
-    public MainActivityVM(Activity activity) {
+    public MainActivityVM() {
         super();
-        this.activity = activity;
+        requestIntent = new MutableLiveData<>();
         stackExchangeClient = new StackExchangeClient(getResponseHandler().requestListener);
+    }
+
+    public MutableLiveData<Integer> getRequestIntent() {
+        return requestIntent;
     }
 
     public void getAllUser() {
@@ -25,7 +27,7 @@ public class MainActivityVM extends BaseViewModel {
     }
 
     public void onClickRecyclerView(View view) {
-        activity.startActivity(new Intent(activity, ListActivity.class));
+        getRequestIntent().setValue(1);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.utildev.arch.basemvvm.view.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
@@ -17,10 +18,20 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//        viewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
-        viewModel = new MainActivityVM(this);
+        viewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
         actMainBinding.setViewModel(viewModel);
+        registerVMListener();
 //        viewModel.getAllUser();
+    }
+
+    private void registerVMListener() {
+        viewModel.getRequestIntent().observe(this, integer -> {
+            if (integer != null) {
+                if (integer == 1) {
+                    startActivity(new Intent(getApplicationContext(), ListActivity.class));
+                }
+            }
+        });
     }
 
     @Override

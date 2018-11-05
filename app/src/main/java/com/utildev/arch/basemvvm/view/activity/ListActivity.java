@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.utildev.arch.basemvvm.R;
 import com.utildev.arch.basemvvm.common.base.adapter.BaseAdapter;
-import com.utildev.arch.basemvvm.common.base.adapter.SingleTypeAdapter;
+import com.utildev.arch.basemvvm.common.base.adapter.RVBindingAdapter;
 import com.utildev.arch.basemvvm.databinding.ActivityListBinding;
 import com.utildev.arch.basemvvm.model.local.Contact;
 
@@ -26,7 +26,7 @@ public class ListActivity extends AppCompatActivity implements BaseAdapter.Adapt
                     "0123456789", "app" + i + "@gmail.com", "Development",
                     "http://android.caotic.it/files/2013/07/Android-logo_0.jpg"));
         }
-        SingleTypeAdapter<Contact> adapter = new SingleTypeAdapter<>(this, R.layout.item_recycler);
+        RVBindingAdapter<Contact> adapter = new RVBindingAdapter<>(this, R.layout.item_recycler);
         adapter.addAll(contacts);
         adapter.setAdapterListener(this);
         binding.setLayoutManager(new LinearLayoutManager(this));
