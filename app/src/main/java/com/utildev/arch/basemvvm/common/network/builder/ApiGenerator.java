@@ -19,7 +19,7 @@ public class ApiGenerator {
     private static ApiGenerator apiGenerator = new ApiGenerator();
     private Retrofit retrofit;
 
-    public static synchronized ApiGenerator getApiGenerator() {
+    public static synchronized ApiGenerator getInstance() {
         if (apiGenerator == null) {
             apiGenerator = new ApiGenerator();
         }

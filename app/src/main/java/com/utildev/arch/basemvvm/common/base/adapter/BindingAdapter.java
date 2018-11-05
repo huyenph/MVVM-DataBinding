@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RVBindingAdapter<T> extends BaseAdapter<T> {
+public class BindingAdapter<T> extends BaseAdapter<T> {
     private int layoutRes;
 
-    public RVBindingAdapter(Context context, int layoutRes) {
+    public BindingAdapter(Context context, int layoutRes) {
         super(context);
         this.layoutRes = layoutRes;
         itemList = new ArrayList<>();

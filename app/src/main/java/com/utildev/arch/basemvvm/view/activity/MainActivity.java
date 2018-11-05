@@ -25,13 +25,15 @@ public class MainActivity extends BaseActivity {
     }
 
     private void registerVMListener() {
-        viewModel.getRequestIntent().observe(this, integer -> {
-            if (integer != null) {
-                if (integer == 1) {
-                    startActivity(new Intent(getApplicationContext(), ListActivity.class));
-                }
+        viewModel.getRequestIntent().observe(this, this::requestIntent);
+    }
+
+    private void requestIntent(Integer integer) {
+        if (integer != null) {
+            if (integer == 1) {
+                startActivity(new Intent(this, ListActivity.class));
             }
-        });
+        }
     }
 
     @Override

@@ -16,13 +16,13 @@ public class StackExchangeClient extends ApiClientBuilder {
     }
 
     public void getAllUser(String v1, String v2, String v3) {
-        StackExchangeService stackExchangeService = ApiGenerator.getApiGenerator().createService(StackExchangeService.class);
+        StackExchangeService stackExchangeService = ApiGenerator.getInstance().createService(StackExchangeService.class);
         requestApi(new TypeToken<BaseModel>() {
         }.getType(), stackExchangeService.requestUsers(v1, v2, v3));
     }
 
     public void getAllUserRx(String v1, String v2, String v3) {
-        StackExchangeService stackExchangeService = ApiGenerator.getApiGenerator().createService(StackExchangeService.class);
+        StackExchangeService stackExchangeService = ApiGenerator.getInstance().createService(StackExchangeService.class);
         requestApiRx(new TypeToken<BaseModel>() {
                 }.getType(),
                 stackExchangeService.requestUsersRx(v1, v2, v3)

@@ -27,19 +27,19 @@ public class ApiClient extends ApiClientBuilder {
         params.add("key1", v1);
         params.add("key2", v2);
         params.add("key3", v3);
-        ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
+        ApiService apiService = ApiGenerator.getInstance().createService(ApiService.class);
         requestApi(new TypeToken<BaseModel>() {
         }.getType(), apiService.callNormal(params.getParams()));
     }
 
     public void requestList(List<BaseModel> list) {
-        ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
+        ApiService apiService = ApiGenerator.getInstance().createService(ApiService.class);
         requestApi(new TypeToken<BaseModel>() {
         }.getType(), apiService.callList(list));
     }
 
     public void requestWithNotParams() {
-        ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
+        ApiService apiService = ApiGenerator.getInstance().createService(ApiService.class);
         requestApi(new TypeToken<BaseModel>() {
         }.getType(), apiService.callNotParams());
     }
@@ -59,7 +59,7 @@ public class ApiClient extends ApiClientBuilder {
         //endregion
 
         MultipartBody requestBody = builder.build();
-        ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
+        ApiService apiService = ApiGenerator.getInstance().createService(ApiService.class);
         requestApi(new TypeToken<BaseModel>() {
         }.getType(), apiService.callFiles(requestBody));
     }
@@ -69,7 +69,7 @@ public class ApiClient extends ApiClientBuilder {
         params.add("key1", v1);
         params.add("key2", v2);
         params.add("key3", v3);
-        ApiService apiService = ApiGenerator.getApiGenerator().createService(ApiService.class);
+        ApiService apiService = ApiGenerator.getInstance().createService(ApiService.class);
         requestApiRx(new TypeToken<BaseModel>() {
                 }.getType(),
                 apiService.callRx(params.getParams())
