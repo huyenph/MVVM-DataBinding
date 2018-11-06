@@ -1,12 +1,11 @@
 package com.utildev.arch.basemvvm.common.base;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableInt;
 import android.view.View;
 
 import com.utildev.arch.basemvvm.common.network.ApiResponseListener;
-import com.utildev.arch.basemvvm.common.network.client.ApiClient;
+import com.utildev.arch.basemvvm.common.network.builder.ApiClient;
 import com.utildev.arch.basemvvm.common.network.handler.ApiResponseHandler;
 import com.utildev.arch.basemvvm.model.rest.RestError;
 

@@ -35,4 +35,17 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("mobile/login")
     Observable<JsonObject> callRx(@FieldMap Map<String, Object> body);
+
+
+    //TODO: Stack Exchange
+    //https://api.stackexchange.com/2.2/users?order=desc&sort=reputation&site=stackoverflow
+    @GET("users")
+    Call<JsonObject> requestUsers(@Query("order") String order,
+                                  @Query("sort") String sort,
+                                  @Query("site") String site);
+
+    @GET("users")
+    Observable<JsonObject> requestUsersRx(@Query("order") String order,
+                                          @Query("sort") String sort,
+                                          @Query("site") String site);
 }

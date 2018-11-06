@@ -29,14 +29,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/_5dp"
+            android:paddingStart="@dimen/_5dp">
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="@dimen/_100dp"
                 android:layout_height="@dimen/_100dp"
-                android:layout_gravity="center"
-                app:imageUrl="@{viewModel.url}"
-                tools:ignore="ContentDescription" />
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/_100dp"
+                    android:layout_height="@dimen/_100dp"
+                    android:layout_gravity="center"
+                    app:imageUrl="@{viewModel.url}"
+                    app:progressBar="@{progressBar}"
+                    tools:ignore="ContentDescription" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

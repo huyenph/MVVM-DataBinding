@@ -5,17 +5,17 @@ import android.view.View;
 
 import com.utildev.arch.basemvvm.common.base.BaseModel;
 import com.utildev.arch.basemvvm.common.base.BaseViewModel;
-import com.utildev.arch.basemvvm.common.network.client.StackExchangeClient;
+import com.utildev.arch.basemvvm.common.network.builder.ApiClient;
 import com.utildev.arch.basemvvm.model.rest.RestError;
 
 public class MainActivityVM extends BaseViewModel {
     private MutableLiveData<Integer> requestIntent;
-    private StackExchangeClient stackExchangeClient;
+    private ApiClient apiClient;
 
     public MainActivityVM() {
         super();
         requestIntent = new MutableLiveData<>();
-        stackExchangeClient = new StackExchangeClient(getResponseHandler().requestListener);
+        apiClient = new ApiClient(getResponseHandler().requestListener);
     }
 
     public MutableLiveData<Integer> getRequestIntent() {
@@ -23,10 +23,10 @@ public class MainActivityVM extends BaseViewModel {
     }
 
     public void getAllUser() {
-        stackExchangeClient.getAllUserRx("desc", "reputation", "stackoverflow");
+        apiClient.getAllUserRx("desc", "reputation", "stackoverflow");
     }
 
-    public void onClickRecyclerView(View view) {
+    public void onClickRv(View view) {
         getRequestIntent().setValue(1);
     }
 
