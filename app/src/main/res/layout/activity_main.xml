@@ -11,29 +11,56 @@
             type="com.utildev.arch.basemvvm.viewmodel.activity.MainActivityVM" />
     </data>
 
-    <FrameLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/flContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/actMain_btRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:background="@color/colorPrimary"
+            android:onClick="@{viewModel::onClickRv}"
+            android:text="@string/recycler_view"
+            android:textColor="#fff"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/actMain_btWebservice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_30dp"
+            android:background="@color/colorPrimary"
+            android:onClick="@{viewModel::onClickRetrofit}"
+            android:text="@string/retrofit"
+            android:textColor="#ffffff"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/actMain_btRv" />
 
         <include
             layout="@layout/view_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toTopOf="parent"
             bind:viewModel="@{viewModel}" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recycler View"
-            android:background="@color/colorPrimary"
-            android:layout_margin="30dp"
-            android:layout_gravity="center"
-            android:textColor="#fff"
-            android:onClick="@{viewModel::onClickRv}"/>
-
-    </FrameLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

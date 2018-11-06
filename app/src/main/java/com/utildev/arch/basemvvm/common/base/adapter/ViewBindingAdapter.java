@@ -17,6 +17,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
 public class ViewBindingAdapter {
+    private static RequestOptions requestOptions = new RequestOptions().transforms(new CircleCrop());
+
     @BindingAdapter("layoutManager")
     public static void setLayoutManager(RecyclerView recyclerView, RecyclerView.LayoutManager manager) {
         recyclerView.setLayoutManager(manager);
@@ -31,7 +33,7 @@ public class ViewBindingAdapter {
     public static void loadImage(ImageView imageView, String imageUrl, ProgressBar progressBar) {
         Glide.with(imageView.getContext())
                 .load(imageUrl)
-                .apply(new RequestOptions().transforms(new CircleCrop()))
+                .apply(requestOptions)
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

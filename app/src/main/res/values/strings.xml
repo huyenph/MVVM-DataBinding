@@ -5,4 +5,6 @@
     <string name="text_mobile">Mobile</string>
     <string name="text_email">Email</string>
     <string name="text_group_name">Group Name</string>
+    <string name="retrofit">Retrofit</string>
+    <string name="recycler_view">Recycler View</string>
 </resources>
