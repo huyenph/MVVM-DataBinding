@@ -5,6 +5,7 @@ import com.utildev.arch.basemvvm.common.base.BaseModel;
 import com.utildev.arch.basemvvm.common.network.ApiParams;
 import com.utildev.arch.basemvvm.common.network.ApiRequestListener;
 import com.utildev.arch.basemvvm.common.network.service.ApiService;
+import com.utildev.arch.basemvvm.model.rest.RestUserSE;
 
 import java.io.File;
 import java.util.List;
@@ -76,10 +77,10 @@ public class ApiClient extends ApiClientBuilder {
     }
 
     //TODO: Stack Exchange
-    public void getAllUser(String v1, String v2, String v3) {
+    public void getAllUser(String v1, String v2, String v3, int page) {
         ApiService apiService = ApiGenerator.getInstance().createService(ApiService.class);
-        requestApi(new TypeToken<BaseModel>() {
-        }.getType(), apiService.requestUsers(v1, v2, v3));
+        requestApi(new TypeToken<RestUserSE>() {
+        }.getType(), apiService.requestUsers(v1, v2, v3, page));
     }
 
     public void getAllUserRx(String v1, String v2, String v3) {

@@ -12,10 +12,11 @@ import com.utildev.arch.basemvvm.model.rest.RestError;
 public abstract class BaseViewModel extends ViewModel implements ApiResponseListener {
     private ApiResponseHandler responseHandler;
     private ApiClient apiClient;
-    private ObservableInt loadingView;
+    private ObservableInt loadingView, loadMoreView;
 
     public BaseViewModel() {
         loadingView = new ObservableInt(View.GONE);
+        loadMoreView = new ObservableInt(View.GONE);
         responseHandler = new ApiResponseHandler(this);
         apiClient = new ApiClient(responseHandler.requestListener);
     }
@@ -24,12 +25,16 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
         return responseHandler;
     }
 
-    protected ApiClient getApiClient() {
+    public ApiClient getApiClient() {
         return apiClient;
     }
 
     public ObservableInt getLoadingView() {
         return loadingView;
+    }
+
+    public ObservableInt getLoadMoreView() {
+        return loadMoreView;
     }
 
     //region TODO: Control loading view
@@ -42,6 +47,20 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
     public void dismissLoading(View view) {
         if (loadingView.get() != View.GONE) {
             loadingView.set(View.GONE);
+        }
+    }
+    //endregion
+
+    //region TODO: Control load more view
+    public void showLoadMore(View view) {
+        if (loadMoreView.get() != View.VISIBLE) {
+            loadMoreView.set(View.VISIBLE);
+        }
+    }
+
+    public void dissmissLoadMore(View view) {
+        if (loadMoreView.get() != View.GONE) {
+            loadMoreView.set(View.GONE);
         }
     }
     //endregion

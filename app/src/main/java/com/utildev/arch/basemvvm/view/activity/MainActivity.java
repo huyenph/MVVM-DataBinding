@@ -10,6 +10,7 @@ import com.utildev.arch.basemvvm.R;
 import com.utildev.arch.basemvvm.common.base.BaseActivity;
 import com.utildev.arch.basemvvm.common.base.BaseModel;
 import com.utildev.arch.basemvvm.databinding.ActivityMainBinding;
+import com.utildev.arch.basemvvm.view.fragment.MainFragment;
 import com.utildev.arch.basemvvm.viewmodel.activity.MainActivityVM;
 
 public class MainActivity extends BaseActivity {
@@ -32,8 +33,13 @@ public class MainActivity extends BaseActivity {
 
     private void requestIntent(Integer integer) {
         if (integer != null) {
-            if (integer == 1) {
-                startActivity(new Intent(this, ListActivity.class));
+            switch (integer) {
+                case 1:
+                    startActivity(new Intent(this, ListActivity.class));
+                    break;
+                case 2:
+                    addFragment(new MainFragment(), true, true);
+                    break;
             }
         }
     }

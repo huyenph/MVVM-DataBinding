@@ -3,10 +3,13 @@ package com.utildev.arch.basemvvm.view.activity;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.utildev.arch.basemvvm.R;
@@ -17,6 +20,7 @@ import com.utildev.arch.basemvvm.databinding.ActivityListBinding;
 import com.utildev.arch.basemvvm.model.local.Contact;
 
 public class ListActivity extends BaseActivity implements BaseAdapter.AdapterListener {
+    private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +35,23 @@ public class ListActivity extends BaseActivity implements BaseAdapter.AdapterLis
         BindingAdapter<Contact> adapter = new BindingAdapter<>(this, R.layout.item_recycler);
         adapter.addAll(contacts);
         adapter.setAdapterListener(this);
-        binding.setLayoutManager(new GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false));
+        layoutManager = new GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false);
+        binding.setLayoutManager(layoutManager);
         binding.setAdapter(adapter);
+
+        binding.actListRvContent.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            int visibleItemCount, totalItemCount, firstVisibleItem;
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    visibleItemCount = layoutManager.getChildCount();
+                    totalItemCount = layoutManager.getItemCount();
+                    firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
+                    Log.d("aaa", "onScrolled: ");
+                }
+            }
+        });
     }
 
     @Override

@@ -20,6 +20,7 @@
     </data>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/actList_rvContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:adapter="@{adapter}"

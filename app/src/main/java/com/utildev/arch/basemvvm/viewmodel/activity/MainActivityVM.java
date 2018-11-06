@@ -33,8 +33,7 @@ public class MainActivityVM extends BaseViewModel {
     }
 
     public void onClickRetrofit(View view) {
-        apiClient.getAllUserRx("desc", "reputation", "stackoverflow");
-        showLoading(view);
+        getRequestIntent().setValue(2);
     }
 
     @Override

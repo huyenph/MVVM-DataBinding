@@ -42,7 +42,8 @@ public interface ApiService {
     @GET("users")
     Call<JsonObject> requestUsers(@Query("order") String order,
                                   @Query("sort") String sort,
-                                  @Query("site") String site);
+                                  @Query("site") String site,
+                                  @Query("page") int page);
 
     @GET("users")
     Observable<JsonObject> requestUsersRx(@Query("order") String order,
