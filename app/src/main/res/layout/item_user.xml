@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.utildev.arch.basemvvm.model.rest.RestItemSE" />
+
+        <variable
+            name="listener"
+            type="com.utildev.arch.basemvvm.common.base.adapter.BaseAdapter.AdapterListener" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5dp">
+
+        <FrameLayout
+            android:id="@+id/itemUser_flAvatar"
+            android:layout_width="@dimen/_100dp"
+            android:layout_height="@dimen/_100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:imageUrl="@{viewModel.profileImage}"
+                app:progressBar="@{progressBar}"
+                tools:ignore="ContentDescription" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/itemUser_tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_5dp"
+            android:gravity="start"
+            android:text="@{viewModel.displayName}"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemUser_flAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemUset_tvLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_5dp"
+            android:gravity="start"
+            android:text="@{viewModel.location}"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemUser_flAvatar"
+            app:layout_constraintTop_toBottomOf="@id/itemUser_tvName" />
+
+        <TextView
+            android:id="@+id/itemUset_tvReputation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_5dp"
+            android:gravity="start"
+            android:text="@{String.valueOf(viewModel.reputation)}"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemUser_flAvatar"
+            app:layout_constraintTop_toBottomOf="@id/itemUset_tvLocation" />
+
+        <include
+            layout="@layout/item_decorator"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_marginEnd="@dimen/_10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemUser_flAvatar"
+            app:layout_constraintTop_toBottomOf="@id/itemUset_tvReputation" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

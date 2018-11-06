@@ -5,6 +5,9 @@
     <data>
 
         <variable
+            name="view"
+            type="com.utildev.arch.basemvvm.view.fragment.MainFragment"/>
+        <variable
             name="viewModel"
             type="com.utildev.arch.basemvvm.common.base.BaseViewModel" />
 
