@@ -3,7 +3,6 @@ package com.utildev.arch.basemvvm.view.fragment;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.utildev.arch.basemvvm.R;
 import com.utildev.arch.basemvvm.common.base.BaseFragment;
@@ -30,7 +30,6 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
     private List<RestItemSE> userList;
     private BaseAdapter<RestItemSE> adapter;
 
-    private boolean isLoading = true;
     private int page = 1;
 
     @Nullable
@@ -74,9 +73,14 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
 
     private void liveDataListener(RestUserSE restUserSE) {
         viewModel.dismissLoading(null);
-        adapter.setLoading(true);
-        userList.addAll(restUserSE.getItems());
-        adapter.set(userList);
+        if (restUserSE != null) {
+            adapter.setLoading(true);
+            userList.addAll(restUserSE.getItems());
+            adapter.set(userList);
+        } else {
+            Toast.makeText(getContext(), "Connection error!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.utildev.arch.basemvvm.BR;
@@ -24,7 +23,6 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
 
     private int layoutRes;
     private boolean isLoading = true;
-    private int visibleItemCount, totalItemCount, firstVisibleItem;
 
     private static final int VIEW_TYPE_ITEM = 555, VIEW_TYPE_LOADING = 111;
 
@@ -36,6 +34,7 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
 
         if (layoutManager != null) {
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                int visibleItemCount, totalItemCount, firstVisibleItem;
                 @Override
                 public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
@@ -150,7 +149,7 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
         this.adapterListener = adapterListener;
     }
 
-    AdapterListener getAdapterListener() {
+    private AdapterListener getAdapterListener() {
         return adapterListener;
     }
 }
