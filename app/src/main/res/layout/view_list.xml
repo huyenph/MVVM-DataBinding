@@ -5,9 +5,6 @@
     <data>
 
         <variable
-            name="view"
-            type="com.utildev.arch.basemvvm.view.fragment.MainFragment"/>
-        <variable
             name="viewModel"
             type="com.utildev.arch.basemvvm.common.base.BaseViewModel" />
 
@@ -37,7 +34,6 @@
                 android:id="@+id/viewList_rvContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#0ff"
                 app:adapter="@{adapter}"
                 app:layoutManager="@{layoutManager}" />
 

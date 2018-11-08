@@ -24,38 +24,11 @@
         android:layout_height="match_parent"
         android:background="#ffffff">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/fragMain_refresh"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                bind:layout_constraintBottom_toTopOf="@id/fragMain_pbloadMore"
-                bind:layout_constraintEnd_toEndOf="parent"
-                bind:layout_constraintStart_toStartOf="parent"
-                bind:layout_constraintTop_toTopOf="parent">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/fragMain_rvContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:adapter="@{adapter}"
-                    app:layoutManager="@{layoutManager}" />
-
-            </android.support.v4.widget.SwipeRefreshLayout>
-
-            <ProgressBar
-                android:id="@+id/fragMain_pbloadMore"
-                android:layout_width="@dimen/_30dp"
-                android:layout_height="@dimen/_30dp"
-                android:visibility="@{viewModel.getLoadMoreView, default=gone}"
-                bind:layout_constraintBottom_toBottomOf="parent"
-                bind:layout_constraintEnd_toEndOf="parent"
-                bind:layout_constraintStart_toStartOf="parent" />
-
-        </android.support.constraint.ConstraintLayout>
+        <include
+            layout="@layout/view_list"
+            bind:adapter="@{adapter}"
+            bind:layoutManager="@{layoutManager}"
+            bind:viewModel="@{viewModel}" />
 
         <include
             layout="@layout/view_loading"
