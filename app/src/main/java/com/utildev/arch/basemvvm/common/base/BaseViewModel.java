@@ -1,6 +1,7 @@
 package com.utildev.arch.basemvvm.common.base;
 
 import android.arch.lifecycle.ViewModel;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.view.View;
 
@@ -13,10 +14,12 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
     private ApiResponseHandler responseHandler;
     private ApiClient apiClient;
     private ObservableInt loadingView, loadMoreView;
+    private ObservableBoolean loadMoreAnim;
 
     public BaseViewModel() {
         loadingView = new ObservableInt(View.GONE);
         loadMoreView = new ObservableInt(View.GONE);
+        loadMoreAnim = new ObservableBoolean(false);
         responseHandler = new ApiResponseHandler(this);
         apiClient = new ApiClient(responseHandler.requestListener);
     }
@@ -37,6 +40,10 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
         return loadMoreView;
     }
 
+    public ObservableBoolean getLoadMoreAnim() {
+        return loadMoreAnim;
+    }
+
     //region TODO: Control loading view
     public void showLoading(View view) {
         if (loadingView.get() != View.VISIBLE) {
@@ -55,12 +62,14 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
     public void showLoadMore(View view) {
         if (loadMoreView.get() != View.VISIBLE) {
             loadMoreView.set(View.VISIBLE);
+            loadMoreAnim.set(true);
         }
     }
 
     public void dissmissLoadMore(View view) {
         if (loadMoreView.get() != View.GONE) {
             loadMoreView.set(View.GONE);
+            loadMoreAnim.set(false);
         }
     }
     //endregion

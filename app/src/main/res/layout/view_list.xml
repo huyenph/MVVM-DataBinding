@@ -22,7 +22,7 @@
         android:layout_height="match_parent">
 
         <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/viewList_refresh"
+            android:id="@+id/viewList_srLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/viewList_pbloadMore"
@@ -46,7 +46,8 @@
             android:visibility="@{viewModel.getLoadMoreView, default=gone}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:show="@{viewModel.getLoadMoreAnim}" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

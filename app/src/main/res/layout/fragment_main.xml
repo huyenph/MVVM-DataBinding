@@ -25,6 +25,7 @@
         android:background="#ffffff">
 
         <include
+            android:id="@+id/fragMain_inclueList"
             layout="@layout/view_list"
             bind:adapter="@{adapter}"
             bind:layoutManager="@{layoutManager}"

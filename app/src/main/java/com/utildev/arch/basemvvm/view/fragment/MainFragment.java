@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,14 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
     private List<RestItemSE> userList;
     private BindingAdapter<RestItemSE> adapter;
 
+    private boolean isLoading = true;
+    private int page = 1;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+
         View view = binding.getRoot();
         viewModel = ViewModelProviders.of(this).get(MainFragmentVM.class);
         binding.setViewModel(viewModel);
@@ -49,8 +54,40 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
         LinearLayoutManager layoutManager = new GridLayoutManager(getContext(), 1, LinearLayoutManager.VERTICAL, false);
         binding.setLayoutManager(layoutManager);
         binding.setAdapter(adapter);
+//        viewModel.showLoadMore(null);
 
-        viewModel.getApiClient().getAllUser("desc", "reputation", "stackoverflow", 1);
+        binding.fragMainInclueList.viewListSrLayout.setOnRefreshListener(() -> {
+            userList.clear();
+            page = 1;
+            adapter.set(userList);
+            viewModel.getApiClient().getAllUser("desc", "reputation", "stackoverflow", 1);
+            viewModel.showLoading(view);
+            binding.fragMainInclueList.viewListSrLayout.setRefreshing(false);
+//            viewModel.showLoadMore(null);
+        });
+
+        binding.fragMainInclueList.viewListRvContent.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            int visibleItemCount, totalItemCount, firstVisibleItem;
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    visibleItemCount = layoutManager.getChildCount();
+                    totalItemCount = layoutManager.getItemCount();
+                    firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
+                    if (isLoading) {
+                        if (visibleItemCount + firstVisibleItem >= totalItemCount) {
+                            isLoading = false;
+                            viewModel.showLoadMore(null);
+                            viewModel.getApiClient().getAllUser("desc", "reputation", "stackoverflow", ++page);
+                        }
+                    }
+                }
+            }
+        });
+
+        viewModel.getApiClient().getAllUser("desc", "reputation", "stackoverflow", page);
         viewModel.showLoading(view);
     }
 
@@ -60,8 +97,10 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
 
     private void liveDataListener(RestUserSE restUserSE) {
         viewModel.dismissLoading(null);
+        viewModel.dissmissLoadMore(null);
+        isLoading = true;
         userList.addAll(restUserSE.getItems());
-        adapter.addAll(userList);
+        adapter.set(userList);
     }
 
     @Override
