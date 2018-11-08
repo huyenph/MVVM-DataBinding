@@ -7,9 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.utildev.arch.basemvvm.BR;
+import com.utildev.arch.basemvvm.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +20,18 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
     final LayoutInflater layoutInflater;
     List<T> itemList;
     private AdapterListener adapterListener;
+    private LinearLayoutManager layoutManager;
 
     private int layoutRes;
     private boolean isLoading = true;
     private int visibleItemCount, totalItemCount, firstVisibleItem;
 
+    private static final int VIEW_TYPE_ITEM = 555, VIEW_TYPE_LOADING = 111;
+
     public BaseAdapter(RecyclerView recyclerView, LinearLayoutManager layoutManager, int layoutRes) {
         layoutInflater = (LayoutInflater) recyclerView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.layoutRes = layoutRes;
+        this.layoutManager = layoutManager;
         itemList = new ArrayList<>();
 
         if (layoutManager != null) {
@@ -60,13 +66,25 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
     @SuppressWarnings("unchecked")
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ViewHolder(DataBindingUtil.inflate(layoutInflater, getLayoutRes(), viewGroup, false));
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        if (viewType == VIEW_TYPE_LOADING) {
+            return new ViewHolder(DataBindingUtil.inflate(layoutInflater, R.layout.view_loadmore, viewGroup, false));
+        } else {
+            return new ViewHolder(DataBindingUtil.inflate(layoutInflater, getLayoutRes(), viewGroup, false));
+        }
     }
 
     @Override
     public int getItemCount() {
         return itemList != null ? itemList.size() : 0;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (layoutManager != null) {
+            return position + 1 == layoutManager.getItemCount() ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
+        }
+        return super.getItemViewType(position);
     }
 
     int getLayoutRes() {

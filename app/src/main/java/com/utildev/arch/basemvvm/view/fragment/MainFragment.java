@@ -3,6 +3,7 @@ package com.utildev.arch.basemvvm.view.fragment;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -73,7 +74,6 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
 
     private void liveDataListener(RestUserSE restUserSE) {
         viewModel.dismissLoading(null);
-        viewModel.dissmissLoadMore(null);
         adapter.setLoading(true);
         userList.addAll(restUserSE.getItems());
         adapter.set(userList);
@@ -91,7 +91,6 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
 
     @Override
     public void onLoadMore() {
-        viewModel.showLoadMore(null);
         viewModel.getApiClient().getAllUser("desc", "reputation", "stackoverflow", ++page);
     }
 }
