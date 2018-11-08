@@ -1,25 +1,29 @@
 package com.utildev.arch.basemvvm.common.base.adapter;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BindingAdapter<T> extends BaseAdapter<T> {
     private int layoutRes;
 
-    public BindingAdapter(Context context, int layoutRes) {
-        super(context);
-        this.layoutRes = layoutRes;
-        itemList = new ArrayList<>();
+    public BindingAdapter(RecyclerView recyclerView, LinearLayoutManager layoutManager, int layoutRes) {
+        super(recyclerView, layoutManager, layoutRes);
     }
 
-    private int getLayoutRes() {
-        return layoutRes;
-    }
+    //    public BindingAdapter(RecyclerView recyclerView, LinearLayoutManager layoutManager, int layoutRes) {
+//        super(recyclerView.getContext(), layoutManager, layoutRes);
+//        this.layoutRes = layoutRes;
+//        itemList = new ArrayList<>();
+//    }
+
+//    private int getLayoutRes() {
+//        return layoutRes;
+//    }
 
     @SuppressWarnings("unchecked")
     @NonNull
