@@ -27,21 +27,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void registerVMListener() {
-        viewModel.getRequestIntent().observe(this, this::requestIntent);
         viewModel.getMutableLiveData().observe(this, this::liveDataListener);
-    }
-
-    private void requestIntent(Integer integer) {
-        if (integer != null) {
-            switch (integer) {
-                case 1:
-                    startActivity(new Intent(this, ListActivity.class));
-                    break;
-                case 2:
-                    addFragment(new MainFragment(), true, true);
-                    break;
-            }
-        }
     }
 
     private void liveDataListener(BaseModel model) {

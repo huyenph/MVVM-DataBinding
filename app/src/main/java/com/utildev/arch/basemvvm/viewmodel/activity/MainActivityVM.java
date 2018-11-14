@@ -1,27 +1,25 @@
 package com.utildev.arch.basemvvm.viewmodel.activity;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Intent;
 import android.view.View;
 
+import com.utildev.arch.basemvvm.common.base.BaseActivity;
 import com.utildev.arch.basemvvm.common.base.BaseModel;
 import com.utildev.arch.basemvvm.common.base.BaseViewModel;
 import com.utildev.arch.basemvvm.common.network.builder.ApiClient;
 import com.utildev.arch.basemvvm.model.rest.RestError;
+import com.utildev.arch.basemvvm.view.activity.ListActivity;
+import com.utildev.arch.basemvvm.view.fragment.MainFragment;
 
 public class MainActivityVM extends BaseViewModel {
-    private MutableLiveData<Integer> requestIntent;
     private MutableLiveData<BaseModel> mutableLiveData;
     private ApiClient apiClient;
 
     public MainActivityVM() {
         super();
-        requestIntent = new MutableLiveData<>();
         mutableLiveData = new MutableLiveData<>();
         apiClient = new ApiClient(getResponseHandler().requestListener);
-    }
-
-    public MutableLiveData<Integer> getRequestIntent() {
-        return requestIntent;
     }
 
     public MutableLiveData<BaseModel> getMutableLiveData() {
@@ -29,11 +27,13 @@ public class MainActivityVM extends BaseViewModel {
     }
 
     public void onClickRv(View view) {
-        getRequestIntent().setValue(1);
+        view.getContext().startActivity(new Intent(view.getContext(), ListActivity.class));
     }
 
     public void onClickRetrofit(View view) {
-        getRequestIntent().setValue(2);
+        if (view.getContext() instanceof BaseActivity) {
+            ((BaseActivity) view.getContext()).addFragment(new MainFragment(), true, true);
+        }
     }
 
     @Override
