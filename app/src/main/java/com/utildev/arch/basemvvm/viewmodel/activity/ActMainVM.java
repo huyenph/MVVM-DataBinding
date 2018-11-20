@@ -1,5 +1,6 @@
 package com.utildev.arch.basemvvm.viewmodel.activity;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.view.View;
 
@@ -18,6 +19,9 @@ public class ActMainVM extends BaseViewModel {
     public void onClickRetrofit(View view) {
         if (view.getContext() instanceof BaseActivity) {
             ((BaseActivity) view.getContext()).addFragment(new MainFragment(), true, true);
+        } else if (view.getContext() instanceof ContextWrapper) {
+            ((BaseActivity) ((ContextWrapper) view.getContext()).getBaseContext())
+                    .addFragment(new MainFragment(), true, true);
         }
     }
 
