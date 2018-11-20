@@ -56,7 +56,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/itemUset_tvLocation"
+            android:id="@+id/itemUser_tvLocation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5dp"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/itemUser_tvName" />
 
         <TextView
-            android:id="@+id/itemUset_tvReputation"
+            android:id="@+id/itemUser_tvReputation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5dp"
@@ -81,7 +81,7 @@
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/itemUser_flAvatar"
-            app:layout_constraintTop_toBottomOf="@id/itemUset_tvLocation" />
+            app:layout_constraintTop_toBottomOf="@id/itemUser_tvLocation" />
 
         <include
             layout="@layout/item_decorator"
@@ -92,7 +92,7 @@
             android:layout_marginEnd="@dimen/_10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/itemUser_flAvatar"
-            app:layout_constraintTop_toBottomOf="@id/itemUset_tvReputation" />
+            app:layout_constraintTop_toBottomOf="@id/itemUser_tvReputation" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -18,14 +18,14 @@ import com.utildev.arch.basemvvm.common.base.adapter.BaseAdapter;
 import com.utildev.arch.basemvvm.databinding.FragmentMainBinding;
 import com.utildev.arch.basemvvm.model.rest.RestItemSE;
 import com.utildev.arch.basemvvm.model.rest.RestUserSE;
-import com.utildev.arch.basemvvm.viewmodel.fragment.MainFragmentVM;
+import com.utildev.arch.basemvvm.viewmodel.fragment.FmMainVM;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainFragment extends BaseFragment implements BaseAdapter.AdapterListener {
     private FragmentMainBinding binding;
-    private MainFragmentVM viewModel;
+    private FmMainVM viewModel;
 
     private List<RestItemSE> userList;
     private BaseAdapter<RestItemSE> adapter;
@@ -36,35 +36,31 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
-
         View view = binding.getRoot();
-        viewModel = ViewModelProviders.of(this).get(MainFragmentVM.class);
+        viewModel = ViewModelProviders.of(this).get(FmMainVM.class);
         binding.setViewModel(viewModel);
-        init(view);
+        init();
         registerLiveData();
         return view;
     }
 
-    private void init(View view) {
+    private void init() {
         userList = new ArrayList<>();
         LinearLayoutManager layoutManager = new GridLayoutManager(getContext(), 1, LinearLayoutManager.VERTICAL, false);
-        binding.setLayoutManager(layoutManager);
-        adapter = new BaseAdapter<RestItemSE>(binding.fragMainInclueList.viewListRvContent, layoutManager, R.layout.item_user) {
-        };
+        adapter = new BaseAdapter<>(binding.fragMainIncludeList.viewListRvContent, layoutManager, R.layout.item_user);
         adapter.setAdapterListener(this);
+        binding.setLayoutManager(layoutManager);
         binding.setAdapter(adapter);
 
-        binding.fragMainInclueList.viewListSrLayout.setOnRefreshListener(() -> {
+        binding.fragMainIncludeList.viewListSrLayout.setOnRefreshListener(() -> {
             userList.clear();
             page = 1;
             adapter.set(userList);
-            viewModel.getApiClient().getAllUser("desc", "reputation", "stackoverflow", 1);
-            viewModel.showLoading(view);
-            binding.fragMainInclueList.viewListSrLayout.setRefreshing(false);
+            viewModel.getAllUser("desc", "reputation", "stackoverflow", page, true);
+            binding.fragMainIncludeList.viewListSrLayout.setRefreshing(false);
         });
 
-        viewModel.getApiClient().getAllUser("desc", "reputation", "stackoverflow", page);
-        viewModel.showLoading(view);
+        viewModel.getAllUser("desc", "reputation", "stackoverflow", page, true);
     }
 
     private void registerLiveData() {
@@ -72,7 +68,6 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
     }
 
     private void liveDataListener(RestUserSE restUserSE) {
-        viewModel.dismissLoading(null);
         if (restUserSE != null) {
             adapter.setLoading(true);
             userList.addAll(restUserSE.getItems());
@@ -80,12 +75,10 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
         } else {
             Toast.makeText(getContext(), "Connection error!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
     public void onItemClick(String value) {
-
     }
 
     @Override
@@ -95,6 +88,12 @@ public class MainFragment extends BaseFragment implements BaseAdapter.AdapterLis
 
     @Override
     public void onLoadMore() {
-        viewModel.getApiClient().getAllUser("desc", "reputation", "stackoverflow", ++page);
+        viewModel.getAllUser("desc", "reputation", "stackoverflow", ++page, false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        viewModel.resetSubscribeObservable();
     }
 }

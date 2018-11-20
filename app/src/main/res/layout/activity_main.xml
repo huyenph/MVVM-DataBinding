@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.utildev.arch.basemvvm.viewmodel.activity.MainActivityVM" />
+            type="com.utildev.arch.basemvvm.viewmodel.activity.ActMainVM" />
     </data>
 
     <FrameLayout

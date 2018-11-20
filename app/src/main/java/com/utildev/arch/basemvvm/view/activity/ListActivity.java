@@ -51,6 +51,5 @@ public class ListActivity extends BaseActivity implements BaseAdapter.AdapterLis
 
     @Override
     public void onLoadMore() {
-
     }
 }

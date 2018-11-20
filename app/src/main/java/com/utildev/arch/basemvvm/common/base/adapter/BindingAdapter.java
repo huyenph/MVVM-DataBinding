@@ -29,26 +29,26 @@ public class BindingAdapter<T> extends BaseAdapter<T> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ViewHolder(DataBindingUtil.inflate(layoutInflater, getLayoutRes(), viewGroup, false));
+        return new ViewHolder(DataBindingUtil.inflate(layoutInflater, layoutRes, viewGroup, false));
     }
 
-    public void add(T viewModel) {
-        itemList.add(viewModel);
-        notifyDataSetChanged();
-    }
-
-    public void add(int position, T viewModel) {
-        itemList.add(position, viewModel);
-        notifyDataSetChanged();
-    }
-
-    public void set(List<T> viewModels) {
-        itemList.clear();
-        addAll(viewModels);
-    }
-
-    public void addAll(List<T> viewModels) {
-        itemList.addAll(viewModels);
-        notifyDataSetChanged();
-    }
+//    public void add(T viewModel) {
+//        itemList.add(viewModel);
+//        notifyDataSetChanged();
+//    }
+//
+//    public void add(int position, T viewModel) {
+//        itemList.add(position, viewModel);
+//        notifyDataSetChanged();
+//    }
+//
+//    public void set(List<T> viewModels) {
+//        itemList.clear();
+//        addAll(viewModels);
+//    }
+//
+//    public void addAll(List<T> viewModels) {
+//        itemList.addAll(viewModels);
+//        notifyDataSetChanged();
+//    }
 }

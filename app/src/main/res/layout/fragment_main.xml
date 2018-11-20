@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.utildev.arch.basemvvm.viewmodel.fragment.MainFragmentVM" />
+            type="com.utildev.arch.basemvvm.viewmodel.fragment.FmMainVM" />
 
         <variable
             name="adapter"
@@ -25,7 +25,7 @@
         android:background="#ffffff">
 
         <include
-            android:id="@+id/fragMain_inclueList"
+            android:id="@+id/fragMain_includeList"
             layout="@layout/view_list"
             bind:adapter="@{adapter}"
             bind:layoutManager="@{layoutManager}"

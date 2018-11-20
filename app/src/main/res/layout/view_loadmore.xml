@@ -4,5 +4,5 @@
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center|bottom" />
 </layout>

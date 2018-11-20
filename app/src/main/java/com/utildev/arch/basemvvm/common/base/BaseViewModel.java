@@ -1,7 +1,6 @@
 package com.utildev.arch.basemvvm.common.base;
 
 import android.arch.lifecycle.ViewModel;
-import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.view.View;
 
@@ -14,20 +13,14 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
     private ApiResponseHandler responseHandler;
     private ApiClient apiClient;
     private ObservableInt loadingView;
-    private ObservableBoolean loadMoreAnim;
 
     public BaseViewModel() {
         loadingView = new ObservableInt(View.GONE);
-        loadMoreAnim = new ObservableBoolean(false);
         responseHandler = new ApiResponseHandler(this);
         apiClient = new ApiClient(responseHandler.requestListener);
     }
 
-    protected ApiResponseHandler getResponseHandler() {
-        return responseHandler;
-    }
-
-    public ApiClient getApiClient() {
+    protected ApiClient getApiClient() {
         return apiClient;
     }
 
@@ -35,18 +28,14 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
         return loadingView;
     }
 
-    public ObservableBoolean getLoadMoreAnim() {
-        return loadMoreAnim;
-    }
-
     //region TODO: Control loading view
-    public void showLoading(View view) {
+    protected void showLoading(View view) {
         if (loadingView.get() != View.VISIBLE) {
             loadingView.set(View.VISIBLE);
         }
     }
 
-    public void dismissLoading(View view) {
+    protected void dismissLoading(View view) {
         if (loadingView.get() != View.GONE) {
             loadingView.set(View.GONE);
         }
@@ -59,9 +48,11 @@ public abstract class BaseViewModel extends ViewModel implements ApiResponseList
 
     @Override
     public void onDataResponse(int code, BaseModel model) {
+        dismissLoading(null);
     }
 
     @Override
     public void onDataError(int code, RestError error) {
+        dismissLoading(null);
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
     final LayoutInflater layoutInflater;
-    List<T> itemList;
+    private List<T> itemList;
     private AdapterListener adapterListener;
     private LinearLayoutManager layoutManager;
 
@@ -44,7 +44,7 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
                         firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
                         if (isLoading) {
                             if (visibleItemCount + firstVisibleItem >= totalItemCount) {
-                                getAdapterListener().onLoadMore();
+                                adapterListener.onLoadMore();
                                 isLoading = false;
                             }
                         }
@@ -58,7 +58,7 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Object item = itemList.get(position);
         holder.getBinding().setVariable(BR.viewModel, item);
-        holder.getBinding().setVariable(BR.listener, getAdapterListener());
+        holder.getBinding().setVariable(BR.listener, adapterListener);
         holder.getBinding().executePendingBindings();
     }
 
@@ -69,7 +69,7 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
         if (viewType == VIEW_TYPE_LOADING) {
             return new ViewHolder(DataBindingUtil.inflate(layoutInflater, R.layout.view_loadmore, viewGroup, false));
         } else {
-            return new ViewHolder(DataBindingUtil.inflate(layoutInflater, getLayoutRes(), viewGroup, false));
+            return new ViewHolder(DataBindingUtil.inflate(layoutInflater, layoutRes, viewGroup, false));
         }
     }
 
@@ -84,10 +84,6 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
             return position + 1 == layoutManager.getItemCount() ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
         }
         return super.getItemViewType(position);
-    }
-
-    int getLayoutRes() {
-        return layoutRes;
     }
 
     public void setLoading(boolean loading) {
