@@ -69,6 +69,7 @@ public class ApiClient extends ApiClientBuilder {
         params.add("key2", v2);
         params.add("key3", v3);
         ApiService apiService = ApiGenerator.getInstance().createService(ApiService.class);
+
         requestApiRx(new TypeToken<BaseModel>() {
                 }.getType(),
                 apiService.callRx(params.getParams())
